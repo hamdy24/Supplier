@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:supplier/core/cubit/app_config_cubit.dart';
 import 'package:supplier/core/utils/constants/app_const.dart';
@@ -91,7 +92,7 @@ class _ProfileViewState extends State<ProfileView> {
                   scrollDirection: Axis.horizontal,
                   itemCount: AppConst.socialMediaIcons.length,
                   itemBuilder: (context, index) {
-                    if(index==3 && Platform.isIOS){
+                    if(index==3 && !kIsWeb && Platform.isIOS){
                       return const SizedBox();
                     }
                     return SocialMediaIcons(

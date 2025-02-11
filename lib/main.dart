@@ -1,5 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supplier/core/cubit/app_config_cubit.dart';
@@ -34,8 +35,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
 );
-   FirebaseMessaging.onBackgroundMessage(_handleBackGroundFirebaseMessage); 
-  await NotificationsManager().initialize();
+   FirebaseMessaging.onBackgroundMessage(_handleBackGroundFirebaseMessage);
+
+   if(!kIsWeb){
+    await NotificationsManager().initialize();
+   }
 
   AppConfigCubit.currentUserDataId = SharedPreferencesManager.getStringValue(key: StorageConstants.userDataIdKey);
   AppConfigCubit.currentUserId = SharedPreferencesManager.getStringValue(key: StorageConstants.userDataIdKey);

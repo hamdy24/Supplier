@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:supplier/core/utils/constants/storage_const.dart';
 import 'package:supplier/core/utils/storage/shared_preferences.dart';
@@ -16,6 +18,7 @@ class NotificationsManager {
 
     print('initializing notifications');
 
+    // if(Platform.is)
     final settings = await _requestPermissions();
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       await _setupTokens();

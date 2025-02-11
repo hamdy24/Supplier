@@ -38,10 +38,10 @@ class _LogoAnimationState extends State<LogoAnimation>
     return Padding(
       padding: const EdgeInsets.only(top: 48.0),
       child: SizedBox(
-        height: 240.w,
+        height: kIsWeb? 40 : 240.w,
         child: LottieBuilder.asset(
           "assets/jsons/Main Scene.json",
-          width: 300.w,
+          width: kIsWeb? 40 : 300.w,
           controller: _logoAnimationController,
           frameRate: FrameRate.composition,
           fit: BoxFit.cover,

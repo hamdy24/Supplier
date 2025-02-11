@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:supplier/core/cubit/app_config_cubit.dart';
 import 'package:supplier/core/routes/app_router.dart';
 import 'package:supplier/core/utils/service_locator.dart';
@@ -71,7 +72,9 @@ class EPrinter extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             initialRoute: 
             // RouteConstants.suppCompleteLoginView,
-            AppConfigCubit.isBoarded?
+            kIsWeb?
+            RouteConstants.firstView
+            :(AppConfigCubit.isBoarded?
             ( AppConfigCubit.isLogged?
                   ( AppConfigCubit.isSupplier?
                       RouteConstants.supplierHomeView:
@@ -79,7 +82,7 @@ class EPrinter extends StatelessWidget {
                   )
                 : RouteConstants.firstView
             )
-                :RouteConstants.onBoardingView,
+                :RouteConstants.onBoardingView),
             onGenerateRoute: AppRouter.onGenerateRoute,
             theme: ThemeData(
 
